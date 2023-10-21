@@ -14,14 +14,14 @@ const resolveRoulette = (chatId, conn) => {
     
     let who = m.quoted ? m.quoted.sender : m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender
     let username = conn.getName(who)
-    if (!(who in global.db.data.users)) throw `✳️ The user is not found in my database`
+    if (!(who in global.db.data.users)) throw `✳️ Pengguna tidak ditemukan di database saya`
 
     if (rouletteBets[chatId] && rouletteBets[chatId].length > 0) {
         let colores = ['red', 'black'];
         let colour = colores[Math.floor(Math.random() * colores.length)];
 
         let winners = [];
-        let resultMessage = `The ball landed on ${colour}\n\n🎉 Winners 🎉\n\n`;
+        let resultMessage = `Bola mendarat ${colour}\n\n🎉 Pemenang 🎉\n\n`;
 
         for (let bet of rouletteBets[chatId]) {
             let result = '';
@@ -60,30 +60,30 @@ const runRoulette = (chatId, conn) => {
 const betRoulette = (user, chatId, amount, color) => {
     let colores = ['red', 'black'];
     if (isNaN(amount) || amount < 500) {
-        throw `✳️ The minimum bet is 500 gold`;
+        throw `✳️ Taruhan minimum adalah 500 emas`;
     }
     if (!colores.includes(color)) {
-        throw '✳️ You must specify a valid color: red or black';
+        throw '✳️ Anda harus menentukan warna yang valid: merah atau hitam';
     }
     if (users.credit < amount) {
-        throw '✳️ You do not have enough gold!';
+        throw '✳️ Anda tidak mempunyai cukup emas!';
     }
     if (amount > 100000) {
-        throw `🟥 You can't bet gold more than 100000`;
+        throw `🟥 Anda tidak bisa bertaruh emas lebih dari 100000`;
     }
 
     if (!rouletteBets[chatId]) {
         rouletteBets[chatId] = [];
     }
     rouletteBets[chatId].push({ user, amount, color });
-    return `✅ Your bet of ${amount} gold on ${color} has been placed!`;
+    return `✅ Taruhan Anda ${amount} gold on ${color} telah ditempatkan!`;
 };
 
 //const handler = async (m, { conn, args, usedPrefix, command }) => {
     let amount = parseInt(args[0]);
     let color = args[1]?.toLowerCase();
     if (args.length < 2) {
-        throw `✳️ Command Usage: ${usedPrefix + command} <amount> <color>\n\n Example: ${usedPrefix + command} 500 red`;
+        throw `✳️ Penggunaan Perintah: ${usedPrefix + command} <amount> <color>\n\n Example: ${usedPrefix + command} 500 red`;
     }
 
     let users = global.db.data.users[m.sender];

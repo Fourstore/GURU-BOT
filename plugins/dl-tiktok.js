@@ -2,11 +2,11 @@ import { tiktokdl } from '@bochilteam/scraper';
 import fg from 'api-dylux';
 
 let handler = async (m, { conn, text, args, usedPrefix, command }) => {
-  if (!args[0]) throw `Enter the link of the video Tiktok`;
-  if (!args[0].match(/tiktok/gi)) throw `Verify that the link is from TikTok`;
+  if (!args[0]) throw `Masukkan tautan video Tiktok`;
+  if (!args[0].match(/tiktok/gi)) throw `Verifikasi bahwa tautan tersebut berasal dari TikTok`;
 
  
-  let txt = 'Here your Requested video';
+  let txt = 'Ini video yang Anda minta';
 
   try {
     const { author: { nickname }, video, description } = await tiktokdl(args[0]);
@@ -20,7 +20,7 @@ let handler = async (m, { conn, text, args, usedPrefix, command }) => {
       let p = await fg.tiktok(args[0]);
       conn.sendFile(m.chat, p.play, 'tiktok.mp4', txt, m);
     } catch {
-      m.reply('*An unexpected error occurred*');
+      m.reply('*Terjadi kesalahan tak terduga*');
     }
   }
 };

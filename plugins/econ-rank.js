@@ -4,7 +4,7 @@ import Canvacord from 'canvacord';
 let handler = async (m, { conn }) => {
   let who = m.quoted ? m.quoted.sender : m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender;
 
-  if (!(who in global.db.data.users)) throw `✳️ The user is not found in my database`;
+  if (!(who in global.db.data.users)) throw `✳️ Pengguna tidak ditemukan di database saya`;
 
   let pp = await conn.profilePictureUrl(who, 'image').catch(_ => './Guru.jpg');
   let user = global.db.data.users[who];

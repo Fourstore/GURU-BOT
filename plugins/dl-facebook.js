@@ -7,7 +7,7 @@ const handler = async (m, { conn, args, usedPrefix, command }) => {
 
   const urlRegex = /^(?:https?:\/\/)?(?:www\.)?(?:facebook\.com|fb\.watch)\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/i;
   if (!urlRegex.test(args[0])) {
-    throw '⚠️ PLEASE GIVE A VALID URL.';
+    throw '⚠️ HARAP BERIKAN URL YANG VALID.';
   }
 
   m.react(rwait);
@@ -15,7 +15,7 @@ const handler = async (m, { conn, args, usedPrefix, command }) => {
   try {
     const result = await fg.fbdl(args[0]);
     const tex = `
-⊱ ─── {* GURU FBDL*} ─── ⊰
+⊱ ─── {* 𝐑𝐞𝐱𝐲 𝐑𝐨𝐬𝐞 FBDL*} ─── ⊰
 ↳ *VIDEO TITLE:* ${result.title}
 ⊱ ────── {⋆♬⋆} ────── ⊰`;
 
@@ -27,7 +27,7 @@ const handler = async (m, { conn, args, usedPrefix, command }) => {
     m.react(done);
   } catch (error) {
     console.log(error);
-    m.reply('⚠️ An error occurred while processing the request. Please try again later.');
+    m.reply('⚠️ Terjadi kesalahan saat memproses permintaan. Silakan coba lagi nanti.');
   }
 };
 

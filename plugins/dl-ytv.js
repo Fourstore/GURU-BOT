@@ -17,7 +17,7 @@ let handler = async (m, { conn, args, isPrems, isOwner, usedPrefix, command }) =
     }
 
     if (format.contentLength / (1024 * 1024) >= limit) {
-      return m.reply(`≡ *GURU YTDL*\n\n▢ *⚖️Size*: ${format.contentLength / (1024 * 1024).toFixed(2)}MB\n▢ *🎞️Quality*: ${format.qualityLabel}\n\n▢ The file exceeds the download limit *+${limit} MB*`);
+      return m.reply(`≡ *𝐑𝐞𝐱𝐲 𝐑𝐨𝐬𝐞 YTDL*\n\n▢ *⚖️Size*: ${format.contentLength / (1024 * 1024).toFixed(2)}MB\n▢ *🎞️Quality*: ${format.qualityLabel}\n\n▢ File melebihi batas unduhan *+${limit} MB*`);
     }
 
     const tmpDir = os.tmpdir();
@@ -53,11 +53,11 @@ let handler = async (m, { conn, args, isPrems, isOwner, usedPrefix, command }) =
 
     writableStream.on('error', (error) => {
       console.error(error);
-      m.reply('Error while trying to download the video. Please try again.');
+      m.reply('Terjadi kesalahan saat mencoba mengunduh video. Silakan coba lagi.');
     });
   } catch (error) {
     console.error(error);
-    m.reply('Error while trying to process the video. Please try again.');
+    m.reply('Terjadi kesalahan saat mencoba memproses video. Silakan coba lagi.');
   }
 };
 

@@ -34,7 +34,7 @@ export async function before(m, { conn }) {
   if (json.status === '200') {
     reply = json.message;
   } else {
-    throw 'Invalid response from SimSimi.';
+    throw 'Respons tidak valid dari SimSimi.';
   }
 
   let speech;
@@ -42,7 +42,7 @@ export async function before(m, { conn }) {
     speech = await tts(reply, defaultLang);
   } catch (e) {
     m.reply(e + '');
-    throw 'Error occurred during text-to-speech conversion.';
+    throw 'Terjadi kesalahan selama konversi text-to-speech.';
   } finally {
     if (speech) conn.sendFile(m.chat, speech, 'tts.opus', null, m, true);
   }

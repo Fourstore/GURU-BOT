@@ -4,9 +4,9 @@ let handler = async (m, { conn, usedPrefix, command }) => {
     let mime = (q.msg || q).mimetype || q.mediaType || ''
     if (/image/.test(mime)) {
     let img = await q.download()
-    if (!img) throw '*REPLY TO AN IMAGE.*'
-    await conn.updateProfilePicture(m.chat, img).then(_ => m.reply('IMAGE SUCCESSFULLY SET AS PP._*'))
-    } else throw '*REPLY TO AN IMAGE.*'}
+    if (!img) throw '*REPLY PESAN GAMBAR.*'
+    await conn.updateProfilePicture(m.chat, img).then(_ => m.reply('GAMBAR BERHASIL SET SEBAGAI PP._*'))
+    } else throw '*REPLY PESAN GAMBAR.*'}
     handler.command = /^setpp(group|grup|gc)?$/i
     handler.group = true
     handler.admin = true

@@ -12,7 +12,7 @@ let handler = async (m, { conn, command, args }) => {
 ‣ *Nominal purchase* : + ${count} 
 ‣ *Spent* : -${xppercredit * count} XP
 └──────────────`, m)
-  } else conn.reply(m.chat, `❎ Sorry, you don't have enough *XP* to buy *${count}* Gold\n\n You can get *XP* using the commands from the *games and economy menu*`, m)
+  } else conn.reply(m.chat, `❎ Maaf, Anda tidak mempunyai cukup *XP* untuk membeli *${count}* Gold\n\n Anda bisa mendapatkan *XP* menggunakan perintah dari *menu permainan dan ekonomi*`, m)
 }
 handler.help = ['buy', 'buyall']
 handler.tags = ['economy']

@@ -14,7 +14,7 @@ handler.all = async function (m) {
     global.rpyp = { contextInfo: { externalAdReply: { mediaUrl: dygp, mediaType: 'VIDEO', description: 'Donate', title: 'YOUTUBE', body: 'Keep bot alive', thumbnailUrl: pp, sourceUrl: fgyt }}}
 	
 	//reply link yt
-    global.rpyt = { contextInfo: { externalAdReply: { showAdAttribution: true, mediaUrl: fgyt, mediaType: 'VIDEO', description: 'Suscribete : ' + fgyt, title: 'YouTube', body: 'learn to create your own bots', thumbnailUrl: pp, sourceUrl: fgyt }}}
+    global.rpyt = { contextInfo: { externalAdReply: { showAdAttribution: true, mediaUrl: fgyt, mediaType: 'VIDEO', description: 'Suscribete : ' + fgyt, title: 'YouTube', body: 'belajar membuat bot Anda sendiri', thumbnailUrl: pp, sourceUrl: fgyt }}}
 
 } 
 export default handler

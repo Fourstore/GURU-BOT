@@ -16,7 +16,7 @@ let handler = async (m, { conn }) => {
 ▢ Role : *${user.role}*
 └──────────────
 
-Hey there, ${name}! You're not ready to level up just yet. It seems like you need to munch up *${max - user.exp}* more XP to level up and reach new heights! Keep going, and the bots will be singing your praises soon! 🚀
+Hai, ${name}! Anda belum siap untuk naik level. Sepertinya Anda perlu mengunyah *${max - user.exp}* lebih banyak XP untuk naik level dan mencapai ketinggian baru! Teruskan, dan bot akan segera memuji Anda! 🚀
 `.trim();
 
         try {
@@ -33,8 +33,8 @@ Hey there, ${name}! You're not ready to level up just yet. It seems like you nee
 ▢ Role : *${user.role}*
 └──────────────
 
-Woo-hoo, ${name}! You've soared to new heights and reached level ${user.level}! 🎉 Time to celebrate! 🎊
-Your newfound power will strike fear into the hearts of trolls, and the bots will bow before your command! Keep up the incredible work, and who knows what epic adventures await you next! 🌟
+Woo hoo, ${name}! YAnda telah melonjak ke ketinggian baru dan mencapai level ${user.level}! 🎉 Saatnya merayakan! 🎊
+Kekuatan baru Anda akan menimbulkan ketakutan di hati para troll, dan bot akan tunduk pada perintah Anda! Pertahankan kerja luar biasa ini, dan siapa yang tahu petualangan epik apa yang menanti Anda🌟
 `.trim();
 
         try {

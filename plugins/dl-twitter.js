@@ -12,7 +12,7 @@ if (!args[0]) throw `📌 Example : \n*${usedPrefix + command}* https://twitter.
 conn.sendFile(m.chat, HD, 'twitter.mp4', te, m)
 m.react(done)
 } catch (e) {
-  	m.reply(`✳️ verify that the link is from Twitter`)
+  	m.reply(`✳️ verifikasi bahwa tautannya berasal dari Twitter`)
 	} 
 	
 }

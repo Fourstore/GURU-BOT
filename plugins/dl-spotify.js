@@ -2,8 +2,8 @@ import fetch from 'node-fetch';
 import spotifydl from '../lib/spotify.js';
 let handler = async (m, { conn, text }) => {
     if (!text) {
-        console.log('No song name provided.'); 
-        throw `*Please enter a song name*`;
+        console.log('Tidak ada nama lagu yang disediakan.'); 
+        throw `*Silakan masukkan nama lagu*`;
     }
 
     try {
@@ -13,15 +13,15 @@ let handler = async (m, { conn, text }) => {
         const response = await fetch(apiUrl);
 
         if (!response.ok) {
-            console.log('Error searching for song:', response.statusText);
-            throw 'Error searching for song';
+            console.log('Kesalahan mencari lagu:', response.statusText);
+            throw 'Kesalahan saat mencari lagu';
         }
 
         const data = await response.json();
 
         if (!data.result || data.result.length === 0) {
-            console.log('No search results found for the song:', text);
-            throw 'No search results found for the song';
+            console.log('Hasil pencarian untuk lagu tidak ditemukan:', text);
+            throw 'Tidak ditemukan hasil pencarian untuk lagu tersebut';
         }
 
         
@@ -34,8 +34,8 @@ let handler = async (m, { conn, text }) => {
         const { data: spotifyData, coverimage, audio } = await spotifydl(songLink);
 
         if (!spotifyData || !coverimage || !audio) {
-            console.log('Invalid Spotify data received:', spotifyData); 
-            throw 'Invalid Spotify data received';
+            console.log('Data Spotify yang diterima tidak valid:', spotifyData); 
+            throw 'Data Spotify yang diterima tidak valid';
         }
 
         const { name, artists, album_name, link } = spotifyData;
@@ -50,7 +50,7 @@ let handler = async (m, { conn, text }) => {
         
         conn.sendFile(m.chat, coverimage, 'spotify_cover.jpg', spotifyi, m);
     } catch (error) {
-        console.error('Error fetching Spotify data:', error); 
+        console.error('Kesalahan saat mengambil data Spotify:', error); 
         throw '*Error*';
     }
 };

@@ -4,10 +4,10 @@ let handler = async (m, { conn, text }) => {
   let who
   if (m.isGroup) who = m.mentionedJid[0]
   else who = m.chat
-  if (!who) throw '✳️ Tag the user'
+  if (!who) throw '✳️ Tandai penggunanya'
   let txt = text.replace('@' + who.split`@`[0], '').trim()
-  if (!txt) throw '✳️ Enter the amount of *XP* you want to add'
-  if (isNaN(txt)) throw ' 🔢 only numbers'
+  if (!txt) throw '✳️ Masukkan jumlah *XP* yang ingin Anda add'
+  if (isNaN(txt)) throw ' 🔢 hanya angka'
   let xp = parseInt(txt)
   let exp = xp
   
@@ -19,7 +19,7 @@ let handler = async (m, { conn, text }) => {
 ┌──────────────
 ▢  *Total:* ${xp}
 └──────────────`)
- conn.fakeReply(m.chat, `▢ Did you recieve \n\n *+${xp} XP*`, who, m.text)
+ conn.fakeReply(m.chat, `▢ Apakah kamu menerima \n\n *+${xp} XP*`, who, m.text)
 }
 
 handler.help = ['addxp <@user>']

@@ -8,12 +8,12 @@ let handler = async (m, { conn, args, usedPrefix, text, command }) => {
         const file = File.fromURL(text);
         await file.loadAttributes();
 
-        if (file.size >= 300000000) return m.reply('Error: File size is too large (Maximum Size: 300MB)');
+        if (file.size >= 300000000) return m.reply('Kesalahan: Ukuran file terlalu besar (Ukuran Maksimum: 300MB)');
 
-        const downloadingMessage = `🌩️ Downloading file... Please wait.`;
+        const downloadingMessage = `🌩️ Mengunduh file... Harap tunggu.`;
         m.reply(downloadingMessage);
 
-        const caption = `*_Successfully downloaded..._*\nFile: ${file.name}\nSize: ${formatBytes(file.size)}`;
+        const caption = `*_Berhasil diunduh..._*\nFile: ${file.name}\nSize: ${formatBytes(file.size)}`;
 
         const data = await file.downloadBuffer();
 

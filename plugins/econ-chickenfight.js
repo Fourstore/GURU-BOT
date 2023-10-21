@@ -6,7 +6,7 @@ let handler = async (m, { conn, args, text, usedPrefix , command }) => {
     return conn.reply(m.chat, 'You must be at least level 5 to use this command.', m);
   }*/
 
-    let fa = `🟥 *Provide the amount of gold to bet*
+    let fa = `🟥 *Berikan jumlah emas untuk dipertaruhkan*
 
 *Example:*
 ${usedPrefix + command} 1000`.trim()
@@ -18,21 +18,21 @@ ${usedPrefix + command} 1000`.trim()
     let amount = (args[0] && number(parseInt(args[0])) ? Math.max(parseInt(args[0]), 1) : /all/i.test(args[0]) ? Math.floor(parseInt(users.credit)) : 1) * 1
 
     let time = users.lastcf + 90000
-        if (new Date - users.lastcf < 90000) throw `You can play cock-fight again in ${msToTime(time - new Date())}`
-        if (amount < 100) throw `🟥 *You can't bet gold less than 100*`
-        if (users.credit < amount) throw `🟥 *You don't have enough money for this bet.*\n*You currently have only ${credit} in gold.*`
+        if (new Date - users.lastcf < 90000) throw `Anda bisa bermain sabung ayam lagi di ${msToTime(time - new Date())}`
+        if (amount < 100) throw `🟥 *Anda tidak bisa bertaruh emas kurang dari 100*`
+        if (users.credit < amount) throw `🟥 *Anda tidak mempunyai cukup uang untuk taruhan ini.*\n*Saat ini Anda hanya mempunyai uang ${credit} dalam emas.*`
         if (users.chicken < 1) {
-        throw `🟥 *You do not have any chicks to bet* \nUse the command ${usedPrefix}buy-chicken`
+        throw `🟥 *Anda tidak mempunyai anak ayam untuk dipertaruhkan* \nGunakan perintah ${usedPrefix}buy-chicken`
     }
     //if (amount > 100000) throw `🟥 *You can't bet gold more than 100000*`
 
     let botScore = (Math.ceil(Math.random() * 35)) * 1  // Random score for the bot (1 to 51)
     let playerScore = (Math.floor(Math.random() * 101)) * 1  // Random score for the player (1 to 100)
-    let status = `Your chicken died 🪦`
+    let status = `Ayammu mati 🪦`
 
       if (botScore < playerScore) {
         users.credit += amount * 1
-        status = `Your lil chicken won the fight, and made you 🪙 ${amount * 2} gold richer! 🐥`
+        status = `Ayam kecilmu memenangkan pertarungan, dan menjadikanmu 🪙 ${amount * 2} emas lebih kaya! 🐥`
       } else {
         users.credit -= amount * 1
         users.chicken -= 1

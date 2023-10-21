@@ -16,27 +16,27 @@ const handler = async (m, { conn, args }) => {
 
   if (feature === 'delete') {
     delete conn.chess[key];
-    return conn.reply(m.chat, '🏳️ *Chess game stopped.*', m);
+    return conn.reply(m.chat, '🏳️ *Permainan catur dihentikan.*', m);
   }
 
   if (feature === 'create') {
     if (gameData) {
-      return conn.reply(m.chat, '⚠️ *Game already in progress.*', m);
+      return conn.reply(m.chat, '⚠️ *Permainan sedang berlangsung.*', m);
     }
-    chessData.gameData = { status: 'waiting', black: null, white: null };
-    return conn.reply(m.chat, '🎮 *Chess game started.*\nWaiting for other players to join.', m);
+    chessData.gameData = { status: 'menunggu', black: null, white: null };
+    return conn.reply(m.chat, '🎮 *Permainan catur dimulai.*\nMenunggu pemain lain bergabung.', m);
   }
 
   if (feature === 'join') {
     const senderId = m.sender;
     if (players.includes(senderId)) {
-      return conn.reply(m.chat, '🙅‍♂️ *You have already joined this game.*', m);
+      return conn.reply(m.chat, '🙅‍♂️ *Anda telah bergabung dalam permainan ini.*', m);
     }
-    if (!gameData || gameData.status !== 'waiting') {
-      return conn.reply(m.chat, '⚠️ *No chess game is currently waiting for players.*', m);
+    if (!gameData || gameData.status !== 'menunggu') {
+      return conn.reply(m.chat, '⚠️ *Tidak ada permainan catur yang menunggu pemain.*', m);
     }
     if (players.length >= 2) {
-      return conn.reply(m.chat, '👥 *Players are already enough.*\nThe game will start automatically.', m);
+      return conn.reply(m.chat, '👥 *Pemain sudah cukup.*\nPermainan akan dimulai secara otomatis.', m);
     }
     players.push(senderId);
     hasJoined.push(senderId);
@@ -46,15 +46,15 @@ const handler = async (m, { conn, args }) => {
       gameData.black = black;
       gameData.white = white;
       chessData.currentTurn = white;
-      return conn.reply(m.chat, `🙌 *Players who have joined:*\n${hasJoined.map(playerId => `- @${playerId.split('@')[0]}`).join('\n')}\n\n*Black:* @${black.split('@')[0]}\n*White:* @${white.split('@')[0]}\n\nPlease use *'chess start'* to begin the game.`, m, { mentions: hasJoined });
+      return conn.reply(m.chat, `🙌 *Pemain yang telah bergabung:*\n${hasJoined.map(playerId => `- @${playerId.split('@')[0]}`).join('\n')}\n\n*Black:* @${black.split('@')[0]}\n*White:* @${white.split('@')[0]}\n\nPlease use *'catur dimulai'* to begin the game.`, m, { mentions: hasJoined });
     } else {
-      return conn.reply(m.chat, '🙋‍♂️ *You have joined the chess game.*\nWaiting for other players to join.', m);
+      return conn.reply(m.chat, '🙋‍♂️ *Anda telah bergabung dalam permainan catur.*\nMenunggu pemain lain untuk bergabung.', m);
     }
   }
 
   if (feature === 'start') {
     if (gameData.status !== 'ready') {
-      return conn.reply(m.chat, '⚠️ *Cannot start the game. Wait for two players to join.*', m);
+      return conn.reply(m.chat, '⚠️ *Tidak dapat memulai permainan. Tunggu hingga dua pemain bergabung.*', m);
     }
     gameData.status = 'playing';
     const senderId = m.sender;
@@ -74,17 +74,17 @@ const handler = async (m, { conn, args }) => {
       }
       return;
     } else {
-      return conn.reply(m.chat, '🙋‍♂️ *You have joined the chess game.*\nWaiting for other players to join.', m);
+      return conn.reply(m.chat, '🙋‍♂️ *Anda telah bergabung dalam permainan catur.*\nMenunggu pemain lain untuk bergabung.', m);
     }
   }
 
   if (args[0] && args[1]) {
     const senderId = m.sender;
     if (!gameData || gameData.status !== 'playing') {
-      return conn.reply(m.chat, '⚠️ *The game has not started yet.*', m);
+      return conn.reply(m.chat, '⚠️ *Permainan belum dimulai.*', m);
     }
     if (currentTurn !== senderId) {
-      return conn.reply(m.chat, `⏳ *It's currently ${chessData.currentTurn === gameData.white ? 'White' : 'Black'}'s turn to move.*`, m, {
+      return conn.reply(m.chat, `⏳ *Saat ini ${chessData.currentTurn === gameData.white ? 'White' : 'Black'}'giliran untuk bergerak.*`, m, {
         contextInfo: {
           mentionedJid: [currentTurn]
         }
@@ -93,7 +93,7 @@ const handler = async (m, { conn, args }) => {
     const chess = new Chess(fen);
     if (chess.isCheckmate()) {
       delete conn.chess[key];
-      return conn.reply(m.chat, `⚠️ *Game Checkmate.*\n🏳️ *Chess game stopped.*\n*Winner:* @${m.sender.split('@')[0]}`, m, {
+      return conn.reply(m.chat, `⚠️ *Permainan Skakmat.*\n🏳️ *Permainan catur dihentikan.*\n*Pemenang:* @${m.sender.split('@')[0]}`, m, {
         contextInfo: {
           mentionedJid: [m.sender]
         }
@@ -101,7 +101,7 @@ const handler = async (m, { conn, args }) => {
     }
     if (chess.isDraw()) {
       delete conn.chess[key];
-      return conn.reply(m.chat, `⚠️ *Game Draw.*\n🏳️ *Chess game stopped.*\n*Players:* ${hasJoined.map(playerId => `- @${playerId.split('@')[0]}`).join('\n')}`, m, {
+      return conn.reply(m.chat, `⚠️ *Game Draw.*\n🏳️ *Permainan catur dihentikan.*\n*Pemain:* ${hasJoined.map(playerId => `- @${playerId.split('@')[0]}`).join('\n')}`, m, {
         contextInfo: {
           mentionedJid: hasJoined
         }
@@ -135,23 +135,22 @@ const handler = async (m, { conn, args }) => {
 
   if (feature === 'help') {
     return conn.reply(m.chat, `
-      🌟 *Chess Game Commands:*
+      🌟 *Perintah Permainan Catur:*
 
-*chess create* - Start a chess game
-*chess join* - Join a waiting chess game
-*chess start* - Start the chess game if two players have joined
-*chess delete* - Stop the chess game
-*chess [from] [to]* - Make a move in the chess game
+*buat catur* - Mulai permainan catur
+*ikut catur* - berakhir dengan permainan catur yang menunggu
+*catur dimulai* - Mulailah permainan catur jika sudah ada dua pemain yang bergabung
+*hapus catur*
 
-*Example:*
-Type *chess create* to start a chess game.
-Type *chess join* to join a waiting chess game.
+*Contoh:*
+Ketik *buat catur* untuk memulai permainan catur.
+Ketik *gabung catur* untuk bergabung dalam permainan catur yang menunggu.
     `, m);
   }
-  return conn.reply(m.chat, '❓ Invalid command. Use *"chess help"* to see the available commands.', m);
+  return conn.reply(m.chat, '❓ Perintah tidak valid. Gunakan *"bantuan catur"* untuk melihat perintah yang tersedia.', m);
 };
 
-handler.help = ['chess [from to]', 'chess delete', 'chess join', 'chess start'];
+handler.help = ['chess [create]', 'chess delete', 'chess join', 'chess start'];
 handler.tags = ['game'];
 handler.command = /^(chess|chatur)$/i;
 

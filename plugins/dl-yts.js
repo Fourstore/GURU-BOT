@@ -9,7 +9,7 @@ let handler = async (m, { conn, text }) => {
     const results = response.data;
 
     if (results.length === 0) {
-      throw 'No results found for the given query.';
+      throw 'Tidak ada hasil yang ditemukan untuk kueri yang diberikan.';
     }
 
     const firstResult = results[0];
@@ -26,7 +26,7 @@ let handler = async (m, { conn, text }) => {
     conn.sendFile(m.chat, firstResult.thumbnail, 'yts.jpeg', message, m);
   } catch (error) {
     console.error(error);
-    throw 'An error occurred while searching for YouTube videos.';
+    throw 'Terjadi kesalahan saat mencari video YouTube.';
   }
 };
 

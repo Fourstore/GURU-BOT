@@ -9,13 +9,13 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
   const fetchImage = async (endpoint) => {
     try {
       const response = await fetch(baseUrl + endpoint);
-      if (!response.ok) throw `❎ Error fetching ${type} image`;
+      if (!response.ok) throw `❎ Terjadi kesalahan saat mengambil ${type} gambar`;
       const imageBuffer = await response.buffer(); // Get the image data as a buffer
       conn.sendFile(m.chat, imageBuffer, 'img.jpg', `✅ Random ${type}`, m);
       m.react(dmoji);
     } catch (error) {
       console.error(error);
-      m.reply(`❎ An error occurred while fetching the ${type} image.`);
+      m.reply(`❎ Terjadi kesalahan saat mengambil ${type} gambar.`);
     }
   };
 

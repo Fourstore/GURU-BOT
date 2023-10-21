@@ -3,11 +3,11 @@
 let handler = async (m, { text }) => {
     let hash = text
     if (m.quoted && m.quoted.fileSha256) hash = m.quoted.fileSha256.toString('hex')
-    if (!hash) throw `✳️ Enter the command name`
+    if (!hash) throw `✳️ Masukkan nama perintah`
     let sticker = global.db.data.sticker
-    if (sticker[hash] && sticker[hash].locked) throw `✳️ You can not delete this command`
+    if (sticker[hash] && sticker[hash].locked) throw `✳️ Anda tidak dapat menghapus perintah ini`
     delete sticker[hash]
-    m.reply(`✅ Command eliminated`)
+    m.reply(`✅ Perintah dihilangkan`)
 }
 
 

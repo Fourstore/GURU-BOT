@@ -9,7 +9,7 @@ import axios from 'axios';
 const streamPipeline = promisify(pipeline);
 
 let handler = async (m, { conn, command, text, usedPrefix }) => {
-  if (!text) throw `Use example ${usedPrefix}${command} naruto blue bird`;
+  if (!text) throw `Gunakan contoh ${usedPrefix}${command} faded`;
   await m.react(rwait);
 
   try {
@@ -20,7 +20,7 @@ let handler = async (m, { conn, command, text, usedPrefix }) => {
     const response = await axios.get(`https://weeb-api.vercel.app/ytsearch?query=${query}`);
     const result = response.data[0]; // Get the first result
 
-    if (!result) throw 'Video Not Found, Try Another Title';
+        if (!result) throw 'Video Tidak Ditemukan, Coba Judul Lain';
 
     // Extract video information from the API response
     const { title, thumbnail, timestamp, views, ago, url } = result;
@@ -67,7 +67,7 @@ let handler = async (m, { conn, command, text, usedPrefix }) => {
           mediaType: 2,
           mediaUrl: url,
           title: title,
-          body: 'HERE IS YOUR SONG',
+          body: 'INILAH LAGUMU',
           sourceUrl: url,
           thumbnail: await (await conn.getFile(thumbnail)).data
         }
@@ -80,14 +80,14 @@ let handler = async (m, { conn, command, text, usedPrefix }) => {
     // Delete the downloaded audio file
     fs.unlink(`${tmpDir}/${title}.mp3`, (err) => {
       if (err) {
-        console.error(`Failed to delete audio file: ${err}`);
+        console.error(`Gagal menghapus file audio: ${err}`);
       } else {
-        console.log(`Deleted audio file: ${tmpDir}/${title}.mp3`);
+        console.log(`File audio dihapus: ${tmpDir}/${title}.mp3`);
       }
     });
   } catch (error) {
     console.error(error);
-    throw 'An error occurred while searching for YouTube videos.';
+    throw 'Terjadi kesalahan saat mencari video YouTube.';
   }
 };
 

@@ -8,15 +8,15 @@ let handler = async (m, { conn, usedPrefix, args, command, text }) => {
   try {
     res = await fetch(`https://inrl-web.onrender.com/api/insta?url=${text}`);
   } catch (error) {
-    throw `An error occurred: ${error.message}`;
+    throw `Terjadi kesalahan: ${error.message}`;
   }
 
   let api_response = await res.json();
   if (!api_response || !api_response.result || api_response.result.length === 0) {
-    throw `No video found or Invalid response from API.`;
+    throw `Tidak ada video yang ditemukan atau tanggapan tidak valid dari API.`;
   }
 
-  let cap = `HERE IS THE VIDEO >,<`;
+  let cap = `INI VIDEO NYA SAYANG >,<`;
 
   conn.sendFile(m.chat, api_response.result[0], 'instagram.mp4', cap, m);
 }
