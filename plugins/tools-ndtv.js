@@ -11,14 +11,14 @@ let handler = async (m, { conn }) => {
     let newsCategory = data.news[randomCategoryIndex];
     let articles = newsCategory.articles;
 
-    if (!articles.length) throw new Error('No news available in the selected category.');
+    if (!articles.length) throw new Error('Tidak ada berita tersedia dalam kategori yang dipilih.');
 
     let randomArticleIndex = Math.floor(Math.random() * articles.length);
     let newsItem = articles[randomArticleIndex];
 
     let newsInfo = `•───── ୨❀୧ ─────•
     ❖ 𝑺𝑻𝑨𝑻𝑼𝑺: Active
-    ㋡ 𝑪𝑹𝑬𝑨𝑻𝑶𝑹: GURU
+    ㋡ 𝑪𝑹𝑬𝑨𝑻𝑶𝑹: ELAINA
     ☞ 𝑯𝑬𝑨𝑫𝑳𝑰𝑵𝑬: ${newsItem.headline}
     ${newsItem.description}
     🔗 𝑹𝑬𝑨𝑫 𝑴𝑶𝑹𝑬: ${newsItem.url}

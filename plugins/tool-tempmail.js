@@ -9,18 +9,18 @@ let handler = async (m, { text, usedPrefix, command }) => {
 
       if (data.status && data.result && data.result.length > 0) {
         const tempMails = data.result.join('\n');
-        const replyMessage = `*Temporary Email Addresses:*\n\n${tempMails}\n\n use \`\`\`\.checkmail <mail-address>\`\`\`\ if you want to check inbox of any temp mail used from above`;
+        const replyMessage = `*Alamat Email Sementara:*\n\n${tempMails}\n\n menggunakan \`\`\`\.checkmail <mail-address>\`\`\`\ jika Anda ingin memeriksa kotak masuk email sementara yang digunakan dari atas`;
         m.reply(replyMessage);
       } else {
-        m.reply('No temporary email addresses found.');
+        m.reply('Tidak ditemukan alamat email sementara.');
       }
     } catch (error) {
       console.error('Error:', error);
-      m.reply('Failed to fetch temporary email addresses.');
+      m.reply('Gagal mengambil alamat email sementara.');
     }
   } else if (command === 'checkmail') {
     if (!text && !(m.quoted && m.quoted.text)) {
-      m.reply('Please provide some text or quote a message to get a response.');
+      m.reply('Harap berikan beberapa teks atau kutipan pesan untuk mendapatkan tanggapan.');
       return;
     }
 
@@ -44,14 +44,14 @@ let handler = async (m, { text, usedPrefix, command }) => {
 ${message.text}
           `;
         }).join('\n\n---\n\n');
-        const replyMessage = `*Messages in* ${text}:\n\n${messages}`;
+        const replyMessage = `*Pesan in* ${text}:\n\n${messages}`;
         m.reply(replyMessage);
       } else {
-        m.reply(`No messages found in ${text}.`);
+        m.reply(`Tidak ada pesan yang ditemukan di ${text}.`);
       }
     } catch (error) {
       console.error('Error:', error);
-      m.reply(`Failed to check messages in ${text}.`);
+      m.reply(`Gagal memeriksa pesan masuk ${text}.`);
     }
   }
 };
