@@ -3,13 +3,13 @@ import fs from 'fs';
 import path from 'path';
 
 let handler = async (m, { text, usedPrefix, command }) => {
-    if (!text) throw `Please provide a plugin URL`;
+    if (!text) throw `Harap berikan URL plugin`;
 
     // Extract the Gist ID from the URL
  const gistId = text.match(/(?:\/|gist\.github\.com\/)([a-fA-F0-9]+)/);
 
 
-    if (!gistId) throw `Invalid plugin URL`;
+    if (!gistId) throw `URL plugin tidak valid`;
 
     const gistName = gistId[1];
     const gistURL = `https://api.github.com/gists/${gistName}`;
@@ -19,7 +19,7 @@ let handler = async (m, { text, usedPrefix, command }) => {
         const gistData = response.data;
 
         if (!gistData || !gistData.files) {
-            throw `No valid files found in the Gist`;
+            throw `Tidak ada file valid yang ditemukan di Gist`;
         }
 
         for (const file of Object.values(gistData.files)) {
@@ -31,10 +31,10 @@ let handler = async (m, { text, usedPrefix, command }) => {
 
             // Write the Gist file content to the plugin file
             await fs.promises.writeFile(pluginPath, file.content);
-            m.reply(`successfully installed the plugin to Guru Bot`);
+            m.reply(`berhasil menginstal plugin ke Elaina Bot`);
         }
     } catch (error) {
-        throw `Error fetching or saving the plugin: ${error.message}`;
+        throw `Terjadi kesalahan saat mengambil atau menyimpan plugin: ${error.message}`;
     }
 };
 

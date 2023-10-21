@@ -7,11 +7,11 @@ let handler = async (m, {
 }) => {
     // Split the message text using the '|' character and slice the array to remove the first element.
     let a = text.split("|").slice(1)
-    if (!a[1]) throw "Format\n" + usedPrefix + command + " hello |yes|no"
-    if (a[12]) throw "Too many options, Format\n" + usedPrefix + command + " hello |yes|no"
+    if (!a[1]) throw "Format\n" + usedPrefix + command + " halo |ya|tidak"
+    if (a[12]) throw "Terlalu banyak pilihan, Format\n" + usedPrefix + command + " halo |ya|tidak"
     // Check for duplicate options in the poll.
-    if (checkDuplicate(a)) throw "Duplicate options in the message!"
-    let cap = "*Polling Request By* " + m.name + "\n*Message:* " + text.split("|")[0]
+    if (checkDuplicate(a)) throw "Opsi duplikat dalam pesan!"
+    let cap = "*Permintaan Polling Oleh* " + m.name + "\n*Pesan:* " + text.split("|")[0]
 
    
     const pollMessage = {

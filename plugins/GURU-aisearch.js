@@ -6,7 +6,7 @@ const endpoint = 'https://v2-guru-indratensei.cloud.okteto.net/perplexity?query=
 let handler = async (m, { text, conn, usedPrefix, command }) => {
   try {
     if (!text && !(m.quoted && m.quoted.text)) {
-      throw `Please provide some text or quote a message to get a response.`;
+      throw `Harap berikan beberapa teks atau kutipan pesan untuk mendapatkan tanggapan.`;
     }
 
     if (!text && m.quoted && m.quoted.text) {
@@ -25,7 +25,7 @@ let handler = async (m, { text, conn, usedPrefix, command }) => {
     const response = await fetch(endpoint + prompt);
 
     if (!response.ok) {
-      throw `Received an error response from the server: ${response.status} - ${response.statusText}`;
+      throw `Menerima respons kesalahan dari server: ${response.status} - ${response.statusText}`;
     }
 
     const data = await response.json();
@@ -41,7 +41,7 @@ let handler = async (m, { text, conn, usedPrefix, command }) => {
       }, {})
   } catch (error) {
     console.error('Error:', error);
-    m.reply(`An error occurred while processing your request. Please try again later.`);
+    m.reply(`Kesalahan terjadi saat memproses permintaan Anda. Silakan coba lagi nanti.`);
   }
 };
 handler.help = ['aisearch']

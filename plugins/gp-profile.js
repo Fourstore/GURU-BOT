@@ -38,6 +38,6 @@ let str = `*🪪 Name:* ${username}${about ? '\n\n 🎌 *Bio:* ' + about : ''}
 }
 handler.help = ['profile']
 handler.tags = ['group']
-handler.command = ['profile'] 
+handler.command = ['profile', 'my'] 
 
 export default handler
