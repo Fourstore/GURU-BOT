@@ -186,10 +186,15 @@ import {
  
   conn.sendMessage(m.chat, { video: { url: menuvid }, caption: text.trim(),  gifPlayback: true,
   gifAttribution: 0}, { quoted: contact })
-
+ 
+    let vn = "./Assets/mp3/Guru5.mp3"
+      
+	conn.sendFile(m.chat, vn, "Guru5.mp3", null, m, true, {
+		type: "audioMessage",
+		ptt: true,
+	});
   } catch (e) {
-   await conn.reply(m.chat, " error", m)
-   throw e
+    throw e
   }
  }
  handler.command = /^(menu|help|\?)$/i
